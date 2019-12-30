@@ -1,0 +1,74 @@
+<head>
+    <title>Add Room</title>
+    <style>
+        a:hover {
+            background: #ff0000;
+            color: #fff;
+        }
+    </style>
+</head>
+<h1 style="text-align: center;color: red;text-transform: uppercase">Edit Room</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form action="/room/save-edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{room._id}}">
+                <div class="form-group">
+                    <label for="">Room Number</label>
+                    <br>
+                    <input class="form-control" value="{{room.room_number}}" type="text" name="room_number">
+                </div>
+                <div class="form-group">
+                    <label for="">Floor</label>
+                    <br>
+                    <input class="form-control" value="{{room.floor}}" type="text" name="floor">
+                </div>
+                <div class="form-group">
+                    <label for="">Hotel</label>
+                    <br>
+                    <select name="hotel_id" class="form-control">
+                        {{#each hotel}}
+                        <option value="{{this._id}}" {{#if selected}} selected {{/if}}>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Single Room</label>
+                    {{{single_room room.single_room}}}
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input class="form-control" value="{{room.price}}" type="number" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="">Status</label>
+                    <br>
+                    {{{check_room_status room.status}}}
+                </div>
+                <div class="form-group">
+                    <label for="">Detail</label>
+                    <br>
+                    <br>
+                    <textarea class="form-control" name="detail" rows="2">{{room.detail}}</textarea>
+                </div>
+
+
+                    <div>
+                        <div>
+                            <img style="width: 150px" src="{{room.image}}" class="img-thumbnail">
+                        </div>
+                        <div>
+                            <label for="">Upload a Image</label>
+                            <br>
+                            <input type="file" name="image" />
+                        </div>
+                        <br>
+                        <button style="width: 120px" class="btn btn-sm btn-primary" type="submit">save</button>
+
+                        <a style="width: 120px; margin-left: 25px;" href="/rooms"
+                            class="btn btn-sm btn-danger">Cancel</a>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>

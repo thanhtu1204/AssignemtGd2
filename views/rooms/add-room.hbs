@@ -1,0 +1,108 @@
+<head>
+    <title>Add Room</title>
+    <style>
+        a:hover {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .button {
+            background-color: #1c87c9;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid rgb(12, 221, 186);
+            color: darkorange;
+            background-color: cyan;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<h1 style="text-align: center;color: red;text-transform: uppercase">Add Room</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form action="/room/add-new" method="post"   onsubmit="return validatedata()" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div>
+                        <label for="">Room Number</label>
+                        <br>
+                        <input type="text" id="room_number" name="room_number" class="form-control" required>
+                         <span style="color: red;" id="pName-err"></span>
+                    </div>
+                    <div>
+                        <label for="">Floor</label>
+                        <br>
+                        <input type="number" id="floor" name="floor" rclass="form-control"required>
+                         <span style="color: red;" id="pName-err"></span>
+                    </div>
+
+                    <div>
+                        <label for="">Hotel</label>
+                        <br>
+                        <select name="hotel_id" class="form-control">
+                            {{#each room}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                        {{/each}}
+                        </select>
+
+                    </div>
+                    <div>
+                        <label for="">Single Room</label>
+                        <br>
+                        <select name="single_room" class="form-control" v-model="allowMultiple">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                         <span style="color: red;" id="pName-err"></span>
+                    </div>
+                    <div>
+                        <label for="">Price</label>
+                        <br>
+                        <input type="number" name="price" class="form-control"required>
+                    </div>
+                     <span style="color: red;" id="pName-err"></span>
+                    <div>
+                        <label for="">Status</label>
+                        <br>
+                        <select name="status" class="form-control">
+                            <option value="1">is Emty</option>
+                            <option value="2">Have Put</option>
+                            <option value="3">Not use</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Detail</label>
+                        <br>
+                        <br>
+                        <textarea class="form-control" name="detail" rows="2"required></textarea>
+                    <span style="color: red;" id="pName-err"></span>
+                    </div>
+
+
+                    <div>
+                        <div>
+                            <label for="">Upload a Image</label>
+                            <br>
+                            <input type="file" name="image"required/>
+                        </div>
+                        <button style="border: 2px solid gray;
+                color: gray;
+                background-color: white;
+                padding: 8px 20px;
+                border-radius: 8px;
+                font-size: 20px;
+                font-weight: bold;" type="submit">save</button>
+                        <a href="/" class="button">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

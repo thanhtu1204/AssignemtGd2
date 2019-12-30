@@ -1,0 +1,78 @@
+<head>
+    <title>Add Hotels</title>
+    <style>
+        a:hover {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .button {
+            background-color: #1c87c9;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid rgb(12, 221, 186);
+            color: darkorange;
+            background-color: cyan;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<h1 style="text-align: center;color: red;text-transform: uppercase">Add Hotels</h1>
+<form style="margin-left: 30%" action="/hotels/add-new" method="post" class="container-fluid" style="width: 80%; padding: 10%; align-items: center;" enctype="multipart/form-data">
+    <div>
+        <label for="">Name</label>
+        <br>
+        <input type="text" name="name" required style=" height: 40px;  width: 50%">
+    </div>
+    <div>
+        <label for="">City</label>
+        <br>
+        <textarea required name="city" rows="2" style="height: 40px;width: 50%"></textarea>
+    </div>
+    <div>
+        <div>
+            <label for="">Address</label>
+            <br>
+            <textarea required name="address" rows="2" style="height: 40px;width: 50%"></textarea>
+        </div>
+        <div>
+        <label for="">Owner</label>
+        <br>
+        <input type="text" name="owner" style="height: 40px;width: 50%" required>
+    </div>
+
+
+
+    <div>
+        <label for="">License Number</label>
+        <br>
+        <input type="number" name="license_number"  style="height: 40px;width: 50%"required>
+    </div>
+     <div>
+        <label for="">Total floor</label>
+        <br>
+        <input type="number" name="total_floor"  style="height: 40px;width: 50%"required>
+    </div>
+        <div>
+            <div>
+                <label for="">Upload a Image</label>
+                <br>
+                <input type="file" name="image" />
+            </div>
+            <button style="border: 2px solid gray;
+                color: gray;
+                background-color: white;
+                padding: 8px 20px;
+                border-radius: 8px;
+                font-size: 20px;
+                font-weight: bold;" type="submit">save</button>
+            <a href="/" class="button">Cancel</a>
+        </div>
+</form>

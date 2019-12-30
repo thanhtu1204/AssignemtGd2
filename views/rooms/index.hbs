@@ -1,0 +1,89 @@
+<head>
+    <title>wecome to PT13352</title>
+    <style>
+        a:hover {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .button {
+            background-color: #1c87c9;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid rgb(12, 221, 186);
+            color: darkorange;
+            background-color: cyan;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .bt {
+            border: 2px solid gray;
+            color: gray;
+            background-color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+    <h1 style="text-align: center;color: red;text-transform: uppercase">Rooms list</h1>
+    <h1 style="text-align: center"><a href="/" class="button">Hotels</a><a href="/rooms"
+            class="button">Rooms</a></h1>
+
+    <table class="table table-hover container-fluid" style="width:100%;margin: 30px;">
+        <thead>
+            <tr>
+                <th scope="col">Room</th>
+                <th scope="col">Room number</th>
+                <th scope="col">Hotel</th>
+                <th scope="col">Floor</th>
+                <th scope="col">Single room</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+                <th scope="col">Image</th>
+                <th scope="col">detail</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody >
+            {{#each ro}}
+            <tr style="text-align: center">
+                <th  scope="row">1</th>
+                <td scope="row">{{this.room_number}}</td>
+                <td scope="row">{{this.hotel_id.name}}</td>
+                 <td scope="row">{{this.floor}}</td>
+                <td scope="row">{{{View_single_room this.single_room}}}</td>
+                <td scope="row">{{this.price}}</td>
+                <td scope="row">{{{View_room_status this.status}}}</td>
+                <td>
+                    <img style="width: 50px;" src="{{this.image}}">
+                </td>
+                 <td scope="row">{{this.detail}}</td>
+                <td>
+                    <a href="/room/edit/{{this._id}}" class="bt">Edit</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete('/room/Remove/{{this._id}}','{{this.name}}')"
+                        class="bt">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div style="text-align: center" class="container-fluid">
+        <a href="/room/add" class="button">Add Room</a>
+    </div>
+    <script>
+        function confirmDelete(url, catename) {
+            var conf = confirm(`Are you sure delete? ${catename}`);
+            if (conf == true) {
+                window.location.href = url;
+            }
+        }
+
+    </script>
