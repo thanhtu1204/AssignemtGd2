@@ -8,14 +8,14 @@ var storage = multer.diskStorage({
     //nơi lưu trữ
     destination: function (req, file, cb) {
       cb(null, './public/uploads');
-  
+
     }, filename: function (req, file, cb) {
       cb(null, shortid.generate() + "00" + file.originalname);
     }
-  
+
   });
   var upload = multer({ storage: storage });
-  
+
   /* GET home page. */
   router.get('/', function (req, res, next) {
     hotels.find({})
@@ -57,25 +57,25 @@ var storage = multer.diskStorage({
     router.get('/hotels/edit/:hId', function(req, res, next){
 
       var hId = req.params.hId;
-    
+
       hotels.findOne({_id: hId}, function(err, data){
         if(err){
           res.send('id khong ton tai');
         }
-    
+
         res.render('hotels/edit-hotels', {ht: data});
       });
     });
-    
+
     router.post('/hotels/save-edit', upload.single('image'), function(req, res, next){
-      
+
       // neu khong upload anh => req.file == null
       let {id, name, city,address,owner,total_floor,license_number} = req.body;
       hotels.findOne({_id: id}, function(err, model){
         if(err){
           res.send('Id khong ton tai');
         }
-    
+
         model.name = name;
         model.city = city;
         model.address=address;
@@ -89,11 +89,11 @@ var storage = multer.diskStorage({
           if(err){
             res.send('cap nhat khong thanh cong');
           }
-    
+
           res.redirect('/');
         })
       })
-    
+
     });
 
 //=================Room==================
@@ -140,7 +140,7 @@ router.get('/room/Remove/:rId', function (req, res, next) {
     res.redirect('/rooms');
   });
 });
-    
+
 //===edit=========
 router.get('/room/edit/:rId', function(req, res, next){
   hotels.find({}, (err, data) => {
@@ -162,14 +162,14 @@ router.get('/room/edit/:rId', function(req, res, next){
 
 //=======lấy dữ liệu từ from=============
 router.post('/room/save-edit', upload.single('image'), function(req, res, next){
-      
+
       // neu khong upload anh => req.file == null
       let {id, room_number, floor,hotel_id,single_room,price,status,detail} = req.body;
       rooms.findOne({_id: id}, function(err, model){
         if(err){
           res.send('Id khong ton tai');
         }
-    
+
         model.room_number = room_number;
         model.floor = floor;
         model.hotel_id=hotel_id;
@@ -184,11 +184,11 @@ router.post('/room/save-edit', upload.single('image'), function(req, res, next){
           if(err){
             res.send('cap nhat khong thanh cong');
           }
-    
+
           res.redirect('/rooms');
         })
       })
-    
+
     });
 //===========save edit=============================
 
@@ -224,4 +224,10 @@ res.json({success:true,hotels:data})
   })
 });
 
+router.get('/api/rooms',(req,res)=>{
+  rooms.find({},(err,data)=>{
+    res.json({success:true,rooms:data})
+  })
+
+});
   module.exports = router;
